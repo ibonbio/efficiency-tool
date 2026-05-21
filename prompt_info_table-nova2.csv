@@ -1,0 +1,405 @@
+MODEL;NAME;REQUEST_BODY;SYSTEM;PROMPT
+eu.amazon.nova-2-lite-v1:0;test;{"system": "$system$", "max_tokens": 4096,"temperature": 0,"messages": [{"role": "user","content": "$prompt$"}]};"You are a great software programmer.";"Explain with max 200 words the ${first_placeholder}"
+eu.amazon.nova-2-lite-v1:0;test_cached;{"system": "$system$", "max_tokens": 4096,"temperature": 0,"messages": [{"role": "user","content": "$prompt$"}]};"You are a great software programmer.";"<ROOT><MSG>Using the Design Pattern book content.</MSG><CACHE_CONTROL>ephemeral<CACHE_CONTROL><MSG>explain the ${first_placeholder}</MSG></ROOT>"
+eu.amazon.nova-2-lite-v1:0;search_duplicates;{"system": "$system$", "max_tokens": 16384,"temperature": 0,"messages": [{"role": "user","content": "$prompt$"}]};"You are an expert archivist of the European Parliament.";"
+Input
+
+Context contain a text file formatted as a CSV table (input_csv) with the # as separator.
+
+input_csv table represents a list of documents. It has these columns:
+- col_00: cluster_id.doc_id (string) (cluster_id is the identifier of the group containing related documents, doc_id identifies the document inside the cluster)
+- col_01: document_name (name of the file containing the document)
+- col_02: summary (document content summary)
+- col_03: persons (list of relevant persons mentioned in the document)
+- col_04: organizations (list of relevant organizations mentioned in the document)
+- col_05: dates (list of relevant dates mentioned in the document)
+- col_06: type (European Parliament document type)
+- col_07: file_metadata (optional file metadata)
+
+---
+<context>
+${context}
+</context>
+
+---
+Your Task
+
+Display the csv table as read from the context using '#' as separator (see an example of result dsv table)
+
+<example>
+col_00#col_01#col_02#col_03#col_04#col_05#col_06#col_07
+000.00000#Agora.CLIM/04-Citizen's Agora - Final Programme 07-11-2007.pdf#Programme de l'Agora citoyenne du Parlement européen les 8 et 9 novembre 2007, traitant des nouveaux traités européens. Sessions plénières et ateliers sur les tâches, droits, outils, frontières et horizons. Participation de la société civile européenne.#Poettering, Walström, von Schwerin, Leinen, Onesta, Reuter, Kröner, Jouyet, Sepi, Berès, Vieilledent-Monfort#Parlement européen, Commission européenne, Conseil de l'Union européenne, Comité économique et social européen, Commission des Affaires Constitutionnelles du Parlement européen#08/11/2007 - 09/11/2007#Programme#None
+000.00001#Agora.CLIM/03-Agora Citoyenne - Programme Final 07-11-2007.pdf#Programme de l'Agora citoyenne du Parlement européen les 8 et 9 novembre 2007, traitant des nouveaux traités européens. Sessions plénières et ateliers sur les missions, droits, instruments, frontières et horizons. Participation de la société civile européenne.#Poettering, Walström, von Schwerin, Leinen, Onesta, Reuter, Kröner, Jouyet, Sepi, Berès#Parlement européen, Commission européenne, Conseil de l'Union européenne, Comité économique et social européen, Commission des Affaires Constitutionnelles du Parlement européen#08/11/2007 - 09/11/2007#Programme#None
+001.00000#Agora.CLIM/06-SG Modalities.pdf#Le Bureau du Parlement européen examine les aspects organisationnels, techniques et financiers de la première Agora citoyenne sur les questions constitutionnelles, initialement prévue les 18 et 19 octobre 2007, puis reportée aux 8 et 9 novembre 2007. La décision finale repose sur la Conférence des présidents.#LEINEN, ONESTA, Margot Wallström#Parlement européen, Commission des affaires constitutionnelles, Comité économique et social#18/10/2007, 19/10/2007, 08/11/2007, 09/11/2007, 12/06/2006, 14/12/2006, 16/17/07, 17/04/2007, 21/22/06/2007, 24/05/2007, 30/08/2007#Note#None
+</example>
+---
+Additional Instructions
+
+- Do not invent data not present in the context
+- Ensure the output is valid csv format
+"
+eu.amazon.nova-2-lite-v1:0;free_analysis;{"system": "$system$", "max_tokens": 8192,"temperature": 0,"messages": [{"role": "user","content": "$prompt$"}]};"You are an expert archivist of the European Parliament";"
+<modus_operandi>
+# Archives historiques du Parlement européen - Traitement des fonds électroniques
+
+## Introduction
+
+Ce document précise les règles à appliquer pour le traitement de fonds composés de documents électroniques, qu'il s'agisse de documents électroniques *ab initio* ou obtenus par numérisation. Il distingue quatre phases de traitement: le prétraitement, le classement, la description et le contrôle qualité. Ce document est applicable par les fonctionnaires et agents du Parlement européen ainsi que par les personnels externes participant au traitement des fonds des Archives.
+
+Ces *guidelines* se fondent sur les spécifications établies en 2014 pour le traitement archives électroniques produites par le cabinet du président du Parlement Jerzy Buzek, ainsi que sur le mode opératoire *Règles pour le contrôle qualité* produit par les Archives (2020).
+
+### 1 - Établissement du plan de classement et des préconisations de traitement
+
+#### 1.1 - Information concernant le producteur ou la procédure décrite
+
+Avant d'établir le plan de classement:
+- S'assurer que l'ensemble du fonds provient du même producteur
+- Vérifier si des fonds de même provenance ont déjà été traités
+- Se documenter sur les missions et attributions du producteur
+
+#### 1.2 - Récolement
+
+Analyser l'ensemble des unités documentaires constituant un fonds et produire un tableau comportant: référence/titre, description succincte, dates extrêmes et localisation.
+
+#### 1.3 - Établissement du plan de classement
+
+Regrouper et ordonner les unités documentaires selon les missions du producteur et/ou les étapes des procédures identifiées. Le plan doit être logique, simple et structuré.
+
+#### 1.4 - Préconisations de traitement
+
+Proposer et faire valider des préconisations de traitement qui:
+- Présentent le contenu et la structure du fonds
+- Incluent le plan de classement détaillé
+- Indiquent le traitement spécifique à appliquer
+- Relèvent les difficultés éventuelles et proposent des solutions
+
+### 2 - Organisation du fonds
+
+#### 2.1 - Organisation des dossiers au sein des séries
+
+Organiser les dossiers de façon logique:
+- En suivant l'ordre chronologique ou chronologique inverse
+- En suivant le déroulement d'une procédure
+- En adoptant des regroupements thématiques
+- En partant des aspects généraux pour terminer par les aspects particuliers
+- En distinguant une réglementation de son application
+
+#### 2.2 - Organisation des pièces au sein des dossiers
+
+Organiser les pièces de façon logique selon les mêmes principes que pour les dossiers.
+
+#### 2.3 - Organisation des documents au sein des pièces
+
+Organiser les documents de façon logique:
+- En suivant l'ordre chronologique inverse (notamment pour la correspondance)
+- Dans le cas d'un courrier électronique, en plaçant le courrier avant ses pièces jointes
+
+### 3 - Dernières éliminations
+
+Achever le travail d'élimination en ne conservant que les documents qui:
+- Ont été reçus ou créés par leur producteur dans le cadre de ses activités
+- Ont une valeur informative et/ou historique substantielle
+
+### 4 - Constitution de la cote du fonds, des séries, des dossiers et de pièces
+
+Définir les cotes conformes aux spécifications de Clavis:
+- Débuter par le préfixe *EU.HAEU*
+- Utiliser des caractères alphanumériques en majuscules non accentuées
+- Ne pas utiliser d'espaces ni de caractères spéciaux
+
+Exemple:
+
+EU.HAEU/FOND_01/S/F//XXX-YYYYYYYY/0010
+
+## Troisième partie: la description
+
+### 1 - Règles générales
+
+#### 1.1 - Principes ISAD(G) de la description à plusieurs niveaux
+
+Respecter les principes:
+- Description du général au particulier
+- Informations adaptées au niveau de description
+- Liens entre les descriptions
+- Non-répétition des informations
+
+#### 1.2 - Saisie des dates
+
+Formats à utiliser:
+- Date simple: JJ/MM/AAAA (ex: 01/05/1977)
+- Période de plusieurs jours: 12-15/03/1980
+- Période de plusieurs mois (même année): 03-04/1980
+- Période de plusieurs mois (années consécutives): 03/1980-04/1981
+- Période de plusieurs années: 1980-1981
+
+#### 1.3 - Développement des acronymes et des sigles
+
+Développer tous les sigles au niveau le plus approprié. Les acronymes de moins de 7 lettres sont en majuscules (ONU), ceux de 7 lettres ou plus avec une majuscule initiale (Unesco).
+
+### 2 - Description des fonds
+
+#### 2.1 - Zone d'identification
+- **Référence**: Identifier le fonds de manière unique (cote)
+- **Titre**: Dénommer le fonds de façon synthétique et sans ambiguïté
+- **Niveau de la description**: *Fonds*
+
+#### 2.2 - Zone de contexte
+- **Histoire administrative/notice biographique**: Fournir un historique du producteur
+- **Histoire de la conservation**: Décrire les changements de propriété et de conservation
+
+#### 2.3 - Zone des notes
+- **Notes**: Indiquer les renseignements ne pouvant être donnés dans d'autres zones
+
+#### 2.4 - Zone du contrôle de la description
+- **Règles ou conventions**: Mentionner la norme ISAD(G)
+
+### 3 - Description des séries
+
+#### 3.1 - Zone d'identification
+- **Référence**: Identifier la série de manière unique
+- **Titre**: Dénommer la série sans répéter les informations du niveau supérieur
+- **Niveau de la description**: *Série* ou *Sous-série*
+
+#### 3.2 - Zone des notes
+- **Notes**: Indiquer les renseignements complémentaires
+
+#### 3.3 - Zone du contrôle de la description
+- **Règles ou conventions**: Mentionner la norme ISAD(G)
+
+### 4 - Description des dossiers
+
+#### 4.1 - Zone d'identification
+- **Référence**: Identifier le dossier de manière unique
+- **Titre**: Dénommer le dossier sans répéter les informations des niveaux supérieurs
+- **Titre complet**: Identique au contenu du champ *Titre*
+- **Date de début**: Date du document original le plus ancien
+- **Date de fin**: Date du document original le plus récent
+- **Niveau de la description**: *Dossier*
+- **Type de dossier**: Sélectionner parmi les 18 propositions de Clavis
+- **Nombre de pièces**: Indiquer le nombre exact de pièces
+
+#### 4.2 - Zone de contexte
+- **Créateur**: Identifier le producteur du dossier
+
+#### 4.3 - Zone du contenu et de la structure
+- **Notes sur le contenu**: Présenter brièvement la portée et le contenu du dossier
+- **Commission pour avis et Commission au fond**: Renseigner tous les sous-champs si pertinent
+
+#### 4.4 - Zone des sources complémentaires
+- **Documents associés externes**: Indiquer les numéros de séance pour les documents de séance
+
+#### 4.5 - Zone des notes
+- **Notes**: Indiquer les renseignements complémentaires
+
+#### 4.6 - Zone du contrôle de la description
+- **Règles ou conventions**: Mentionner la norme ISAD(G)
+- **Contrôle de la description**: Mettre à jour en cas de modification
+
+### 5 - Description des pièces
+
+#### 5.1 - Zone d'identification
+- **Référence**: Identifier la pièce de manière unique (numérotation de 10 en 10)
+- **Titre**: Dénommer la pièce sans répéter les informations des niveaux supérieurs
+- **Date de début**: Date du document original le plus ancien
+- **Date de fin**: Date du document original le plus récent
+- **Niveau de la description**: *Pièce*
+- **Numéro PE**: Format PE000000/xxx, sans espace et sans point
+- **Nombre de pages**: Indiquer le nombre exact de pages
+
+#### 5.2 - Zone de contexte
+- **Créateur**: Identifier le producteur de la pièce
+
+#### 5.3 - Zone du contenu et de la structure
+- **Documents électroniques**: Vérifier l'intégrité et la lisibilité des documents
+- **Autorités impliquées**: Identifier les personnes morales ou physiques impliquées
+
+#### 5.4 - Zone des conditions d'accès et d'utilisation
+- **Langues des documents**: Sélectionner la/les langue(s) des documents
+
+#### 5.5 - Zone des notes
+- **Notes**: Indiquer les renseignements complémentaires
+
+#### 5.6 - Zone du contrôle de la description
+- **Règles ou conventions**: Mentionner la norme ISAD(G)
+- **Contrôle de la description**: Mettre à jour en cas de modification
+</modus_operandi>
+
+	<context>
+	${context}
+	</context>
+
+Your task:
+
+	1. Read the context data structure enclosed by the tags <context> and </context>. The context data structure is formatted as a list of json dictionaries. Each element of the list contains the description of a document.
+	2. Read the provided instructions provided enclosed by the tags <modus_operandi> and </modus_operandi>.
+	3. Answer to the query delimited by <user_request> and </user_request> strictly observing the instructions described in the 'modus operandi' and examining only the documents described in the context data structure.
+
+	<user_request>
+		${user_request}
+	</user_request>
+"
+eu.amazon.nova-2-lite-v1:0;guided_analysis;{"system": "$system$", "max_tokens": 8192,"temperature": 0,"messages": [{"role": "user","content": "$prompt$"}]};"Please answer only to questions relating to the context you have been provided";"
+<context>
+    ${context}
+</context>
+
+<user_request>
+    ${user_request}
+</user_request>
+"
+eu.amazon.nova-2-lite-v1:0;generate_optimized_context;{"system": "$system$", "max_tokens": 8192,"temperature": 0,"messages": [{"role": "user","content": "$prompt$"}]};"You are an expert archivist of the European Parliament";"
+<modus_operandi>
+
+## 1 - Saisie des dates
+
+Formats à utiliser:
+- Date simple: JJ/MM/AAAA (ex: 01/05/1977)
+- Période de plusieurs jours: 12-15/03/1980
+- Période de plusieurs mois (même année): 03-04/1980
+- Période de plusieurs mois (années consécutives): 03/1980-04/1981
+- Période de plusieurs années: 1980-1981
+
+## 2 - Développement des acronymes et des sigles
+
+Développer tous les sigles au niveau le plus approprié. Les acronymes de moins de 7 lettres sont en majuscules (ONU), ceux de 7 lettres ou plus avec une majuscule initiale (Unesco).
+
+</modus_operandi>
+
+<context>
+	${context}
+</context>
+
+YOUR TASK:
+
+	1. Read the instructions enclosed by the tags <modus_operandi> and </modus_operandi>.
+	2. Read the context data structure enclosed by the tags <context> and </context>. Context contains a json dictionary (Dict[str, Dict[str, str]]) describing documents to be archived. Each document has a 'name' field, a 'md_content' field, and a 'file_metadata' field that can be null.
+	3. Generate a CSV Table (# as separator) with these columns:
+        - id: row identifier starting with the ${delta} value and incremented of +1 at each new row
+        - file_name: corresponds to the key value of the json dictionary present in context
+        - summary: Write a concise summary (maximum 100 words) of md_content field including as many Named Entities (people, organizations, locations, etc.) as possible.
+        - persons: all Named Entities of type Person found in the md_content field
+        - organizations: all Named Entities of type Organization found in md_content field
+        - dates: all Named Entities of type Date found in md_content field
+        - ep_document_type: infer the possible document type (allowed values: see the values delimited by <ep_document_type_values> and </ep_document_type_values>:
+        <ep_document_type_values>
+            <v>Accord interinstitutionnel</v>
+            <v>Accord international</v>
+            <v>Addendum</v>
+            <v>Affiche</v>
+            <v>Amendement</v>
+            <v>Annexe au PV</v>
+            <v>Article de presse</v>
+            <v>Audition publique</v>
+            <v>Autre</v>
+            <v>Avant-projet d'avis de commission</v>
+            <v>Avant-projet d'ordre du jour</v>
+            <v>Avant-projet de rapport parlementaire</v>
+            <v>Avis</v>
+            <v>Avis AC</v>
+            <v>Avis de commission</v>
+            <v>Calendrier</v>
+            <v>Carte</v>
+            <v>Communication aux membres</v>
+            <v>Communication de la Commission</v>
+            <v>Communiqué</v>
+            <v>Compte rendu</v>
+            <v>Consultation par le Conseil</v>
+            <v>Contribution</v>
+            <v>Correspondance</v>
+            <v>Corrigendum</v>
+            <v>Curriculum vitae</v>
+            <v>Discours</v>
+            <v>Document budgétaire</v>
+            <v>Document comptable</v>
+            <v>Document de travail</v>
+            <v>Document maître</v>
+            <v>Document relatif au personnel</v>
+            <v>Documentation</v>
+            <v>Débat</v>
+            <v>Décision</v>
+            <v>Décision PE</v>
+            <v>Déclaration commune</v>
+            <v>Déclaration publique</v>
+            <v>Déclaration écrite</v>
+            <v>Intervention orale</v>
+            <v>Lettre</v>
+            <v>Liste</v>
+            <v>Motion de censure</v>
+            <v>Mémorandum</v>
+            <v>Note</v>
+            <v>Ordre du jour</v>
+            <v>Orientation commune du Conseil</v>
+            <v>Page de signatures</v>
+            <v>Position commune du Conseil</v>
+            <v>Procès-verbal</v>
+            <v>Programme</v>
+            <v>Projet commun</v>
+            <v>Projet d'amendement</v>
+            <v>Projet d'avis de commission</v>
+            <v>Projet d'ordre du jour</v>
+            <v>Projet de compte rendu</v>
+            <v>Projet de décision PE</v>
+            <v>Projet de procès-verbal</v>
+            <v>Projet de proposition de résolution</v>
+            <v>Projet de rapport parlementaire</v>
+            <v>Proposition de décision PE</v>
+            <v>Proposition de déclaration d'intention de rejet</v>
+            <v>Proposition de la Commission</v>
+            <v>Proposition de la Commission modifiée</v>
+            <v>Proposition de résolution</v>
+            <v>Proposition de résolution commune</v>
+            <v>Proposition du Conseil</v>
+            <v>Pétition</v>
+            <v>Question de l'heure des questions</v>
+            <v>Question orale</v>
+            <v>Question orale en commission</v>
+            <v>Question parlementaire</v>
+            <v>Question à la présidence</v>
+            <v>Question écrite</v>
+            <v>Questionnaire</v>
+            <v>Rapport</v>
+            <v>Rapport parlementaire</v>
+            <v>Recommandation</v>
+            <v>Recommandation de la Commission</v>
+            <v>Recommandation du Conseil</v>
+            <v>Règlement intérieur</v>
+            <v>Réponse à la question</v>
+            <v>Résolution</v>
+            <v>Résolution PE</v>
+            <v>Tableau</v>
+            <v>Texte adopté</v>
+            <v>Télégramme</v>
+            <v>Virement de crédit</v>
+            <v>Écrits</v>
+        </ep_document_type_values>
+        - file_metadata: corresponds to the file_metadata field
+
+Important:
+
+- Do not include headers, explanations, or commentary.
+- In the generated csv table DO NOT add the headers row.
+- If you can't generate a summary file the cell with the string 'no_content'. For all other cells insert None if no value is present
+- All text must be in French.
+- Don't add empty rows (no LF chars alone).
+- Verify that each generated row contains 7 (seven) # characters. If they are not seven, regenerate the row.
+- Each row must be on a new line immediately after the previous one.
+- DO NOT CONVERT to Markdown the generated answer, NO MARKDOWN. This is very important!
+- DO NOT wrap the output in triple backticks (```).
+- DO NOT use any code block markers.
+- The output must be raw text only.
+
+Example of OK generated output:
+
+1#file_01.doc#Parlement européen, Suivi de réunion entre l’Agence européenne de l’aviation civile (EASA) et RETT#person_01#Parlement européen, RETT,EASA#31/01/1989#Liste#{""title"": ""02"", ""author"": ""jmale"", ""subject"": None, ""keywords"": None, ""last_modified_by"": ""rwilkinson""}
+2#file_AA.docx#Rapport ... text finale.#person_02, Person_03,person_03,Paolo Rossi#None#31/03/2019#Rapport#None
+3#file_AB.xlsx#no_value#None#None#31/03/2019#Autre#None
+...
+n#file_N.pdf#Rapport ...#person_32, Romano Prodi#Commission Europeenne, Parlement européen#01 January 2019#Rapport#None
+n+1#...#...#...#...#...#...#...
+	</user_request>
+
+Example of NOT OK generated output:
+```csv
+1#file_01.doc#Liste de vote ...#person_01#Parlement européen,OTAN,Commission Europeenne#31 janvier 2019#Liste#{""title"": ""02"", ""author"": ""jmale"", ""subject"": None, ""keywords"": None, ""last_modified_by"": ""rwilkinson""}
+```
+"

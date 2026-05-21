@@ -1,0 +1,27 @@
+{
+	"description": {
+		"name": "EP Archives Efficency Tools",
+		"version": "v8.4.0",
+		"used_by": "European Parliament Archives unit.",
+		"test": "test_ok",
+		"whatsnew": "Added the cognito parameters"
+	},
+	"config": {
+		"config_bucket": "epha-archives-tools-code",
+		"prompt_table_file": "prompt_info_table-nova2.csv"
+	},
+	"ai": {
+		"bedrock_model_generate": "eu.amazon.nova-2-lite-v1:0",
+		"bedrock_model_max_tokens": 1000000,
+		"bedrock_model_token_bytes": 6,
+		"prompt_analyze_single_doc_item": "single_doc_item_title_and_dates",
+		"prompt_analyze_multiple_docs_item": "multiple_doc_item_title_and_dates"
+	},
+	"aws": {
+		"s3_code_bucket_name": "epha-archives-tools-code",
+		"s3_docs_bucket_name": "epha-archives-tools-docs",
+		"region": "eu-central-1",
+		"cognito_user_pool_id": "eu-central-1_KWfcDnm0w",
+		"cognito_client_id": "2lunfn78ggmc9jscarogbr4d8k"
+	}
+}
