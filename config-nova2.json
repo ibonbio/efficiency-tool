@@ -7,7 +7,7 @@
 		"whatsnew": "Added the cognito parameters"
 	},
 	"config": {
-		"config_bucket": "epha-archives-tools-code",
+		"config_bucket": "<code_bucket_name>",
 		"prompt_table_file": "prompt_info_table-nova2.csv"
 	},
 	"ai": {
@@ -18,10 +18,10 @@
 		"prompt_analyze_multiple_docs_item": "multiple_doc_item_title_and_dates"
 	},
 	"aws": {
-		"s3_code_bucket_name": "epha-archives-tools-code",
-		"s3_docs_bucket_name": "epha-archives-tools-docs",
-		"region": "eu-central-1",
-		"cognito_user_pool_id": "eu-central-1_KWfcDnm0w",
-		"cognito_client_id": "2lunfn78ggmc9jscarogbr4d8k"
+		"s3_code_bucket_name": "<code_bucket_name>",
+		"s3_docs_bucket_name": "<docs_bucket_name>",
+		"region": "<region>",
+		"cognito_user_pool_id": "<cognito_user_pool_id>",
+		"cognito_client_id": "<cognito_client_id>"
 	}
 }
